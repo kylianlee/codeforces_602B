@@ -3,16 +3,16 @@
 
 using namespace std;
 
-typedef long long ll;
+//typedef long long ll;
 
 int main()
 
 {
-    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-    int n,a;
+//    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+    int n;
     cin>>n;
     int arr[n];
-    int mx=0;
+    int mx;
     int mn=INT_MAX;
     for(int i=0;i<n;i++)
     {
