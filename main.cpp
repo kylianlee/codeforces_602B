@@ -1,63 +1,44 @@
-//
-// Created by Kylian Lee on 2021/04/09.
-//
-<<<<<<< HEAD
-
 #include <iostream>
+#include <set>
 
 using namespace std;
 
-int main(){
+typedef long long ll;
 
-=======
-#include <iostream>
-#include <algorithm>
+int main()
 
-int points[100001];
-
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    for(int i = 0; i < n; i++){
-        cin >> points[i];
+{
+    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+    int n,a;
+    cin>>n;
+    int arr[n];
+    int mx=0;
+    int mn=INT_MAX;
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
     }
-
-    int M = points[0], m = points[0];
-    int count = 1, answer = -1;
-
-    for(int i = 1; i < n; i++){
-        if(abs(points[i] - m) <= 1 && abs(points[i] - M) <= 1){
-            m = min(m, points[i]);
-            M = max(M, points[i]);
-            count++;
-
-            cout << "M : " << M << " m : " << m << " count : " << count << endl;
+    int j=0;
+    int ans=0;
+    int diff;
+    multiset<int>s;
+    for(int i=0;i<n;i++)
+    {
+        s.insert(arr[i]);
+        mx=(*s.rbegin());
+        mn=(*s.begin());
+        diff=mx-mn;
+        while(diff>1)
+        {
+            s.erase(s.find(arr[j]));
+            mx=(*s.rbegin());
+            mn=(*s.begin());
+            diff=mx-mn;
+            j++;
         }
-        else{
-            answer = max(answer, count);
-
-            cout << "M : " << M << " m : " << m << " count : " << count << endl;
-
-            m = points[i];
-            M = points[i];
-            count = 0;
-
-            for(int j = i; j >= 0; j--){
-                if(abs(points[i] - m) <= 1 && abs(points[i] - M) <= 1) {
-                    m = min(m, points[j]);
-                    M = max(M, points[j]);
-                    count++;
-                }
-                else
-                    break;
-            }
-        }
+        ans=max(i-j,ans);
+        // cout<<j+1<<" "<<i+1<<endl;
     }
-    cout << max(answer, count) << endl;
+    cout<<ans+1<<endl;
 
-    return 0;
->>>>>>> push
 }
